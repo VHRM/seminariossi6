@@ -1,0 +1,211 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "29e7bd047711f205",
+        "type": "websocket in",
+        "z": "f6f2187d.f17ca8",
+        "name": "voltagem-in-ws",
+        "server": "4fd496418ae2a1e7",
+        "client": "",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "2053c07ec81b4d65",
+                "80595d2ed23a33a0"
+            ]
+        ]
+    },
+    {
+        "id": "2053c07ec81b4d65",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "voltagem-mqtt-out",
+        "topic": "voltagem",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8b1546680dce7286",
+        "x": 550,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "1a1da8a8862894ae",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "voltagem",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "8b1546680dce7286",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 260,
+        "wires": [
+            [
+                "47a03e860fe7dd08",
+                "0071bf7bec4fc9ba"
+            ]
+        ]
+    },
+    {
+        "id": "5c502201564097c0",
+        "type": "websocket out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "server": "",
+        "client": "0b67947ec68baf8a",
+        "x": 660,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "47a03e860fe7dd08",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 1",
+        "func": "msg.payload = msg.payload + \" manipulado\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 260,
+        "wires": [
+            [
+                "5c502201564097c0"
+            ]
+        ]
+    },
+    {
+        "id": "495994f6907c3e7e",
+        "type": "websocket in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "server": "594dca7b3e11091e",
+        "client": "",
+        "x": 190,
+        "y": 400,
+        "wires": [
+            [
+                "4c09cd10df798ce4"
+            ]
+        ]
+    },
+    {
+        "id": "4c09cd10df798ce4",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "80595d2ed23a33a0",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "0071bf7bec4fc9ba",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "4fd496418ae2a1e7",
+        "type": "websocket-listener",
+        "path": "/ws/voltagem",
+        "wholemsg": "false"
+    },
+    {
+        "id": "8b1546680dce7286",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt://broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "0b67947ec68baf8a",
+        "type": "websocket-client",
+        "path": "ws://localhost:1880/ws/exibe",
+        "tls": "",
+        "wholemsg": "false",
+        "hb": "0",
+        "subprotocol": ""
+    },
+    {
+        "id": "594dca7b3e11091e",
+        "type": "websocket-listener",
+        "path": "/ws/exibe",
+        "wholemsg": "false"
+    }
+]

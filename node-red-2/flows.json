@@ -1,0 +1,306 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "29e7bd047711f205",
+        "type": "websocket in",
+        "z": "f6f2187d.f17ca8",
+        "name": "voltagem-in-ws",
+        "server": "4fd496418ae2a1e7",
+        "client": "",
+        "x": 220,
+        "y": 80,
+        "wires": [
+            [
+                "2053c07ec81b4d65"
+            ]
+        ]
+    },
+    {
+        "id": "2053c07ec81b4d65",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "voltagem-mqtt-out",
+        "topic": "voltagem",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8b1546680dce7286",
+        "x": 550,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1a1da8a8862894ae",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "topic": "voltagem",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "8b1546680dce7286",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 260,
+        "wires": [
+            [
+                "47a03e860fe7dd08",
+                "842de3e9caa8fd22",
+                "3f36f3b1bb7bc9a7"
+            ]
+        ]
+    },
+    {
+        "id": "5c502201564097c0",
+        "type": "websocket out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "server": "",
+        "client": "0b67947ec68baf8a",
+        "x": 660,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "47a03e860fe7dd08",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 1",
+        "func": "msg.payload = msg.payload + \" manipulado\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 260,
+        "wires": [
+            [
+                "5c502201564097c0"
+            ]
+        ]
+    },
+    {
+        "id": "495994f6907c3e7e",
+        "type": "websocket in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "server": "594dca7b3e11091e",
+        "client": "",
+        "x": 210,
+        "y": 500,
+        "wires": [
+            [
+                "4c09cd10df798ce4"
+            ]
+        ]
+    },
+    {
+        "id": "4c09cd10df798ce4",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "842de3e9caa8fd22",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "8118a0a7629e0288",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "100",
+        "ymax": "240",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": true,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 370,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a7f96ead1a194d15",
+        "type": "ui_audio",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "8118a0a7629e0288",
+        "voice": "urn:moz-tts:sapi:Microsoft Daniel - Portuguese (Brazil)?pt-BR",
+        "always": "",
+        "x": 860,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3f36f3b1bb7bc9a7",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "220",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "abb32e38d82b7c2a"
+            ]
+        ]
+    },
+    {
+        "id": "abb32e38d82b7c2a",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Alerta",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 180,
+        "wires": [
+            [
+                "a7f96ead1a194d15"
+            ]
+        ]
+    },
+    {
+        "id": "4fd496418ae2a1e7",
+        "type": "websocket-listener",
+        "path": "/ws/voltagem",
+        "wholemsg": "false"
+    },
+    {
+        "id": "8b1546680dce7286",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt://broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "0b67947ec68baf8a",
+        "type": "websocket-client",
+        "path": "ws://localhost:1880/ws/exibe",
+        "tls": "",
+        "wholemsg": "false",
+        "hb": "0",
+        "subprotocol": ""
+    },
+    {
+        "id": "594dca7b3e11091e",
+        "type": "websocket-listener",
+        "path": "/ws/exibe",
+        "wholemsg": "false"
+    },
+    {
+        "id": "8118a0a7629e0288",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "bd2ca5406b528524",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "bd2ca5406b528524",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
